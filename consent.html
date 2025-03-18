@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login/Registration</title>
+  <style>
+    /* ... (Your existing CSS) ... */
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .form-container {
+      border: 1px solid #ddd;
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .form-container input {
+      width: calc(100% - 22px);
+      padding: 11px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-container input:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 0.85em;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    .form-container button:hover {
+      background-color: #0056b3;
+    }
+
+    .form-container button:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
+    }
+
+    .toggle-button {
+      background: none;
+      border: none;
+      color: #007bff;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 1em;
+      padding: 0;
+      margin-top: 5px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .toggle-button:hover{
+        color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="form-container" id="loginForm">
+    <h2>Login</h2>
+    <input type="text" id="loginUsername" placeholder="Username/Email" required>
+    <div id="loginUsernameError" class="error-message"></div>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+    <div id="loginPasswordError" class="error-message"></div>
+    <button id="loginButton">Login</button>
+    <button class="toggle-button" id="showRegisterForm">Register</button>
+    <a href="privacy.html" class="toggle-button" style="text-decoration: none;">Privacy Policy</a>
+  </div>
+
+  <div class="form-container" id="registerForm" style="display: none;">
+    <h2>Register</h2>
+    <input type="text" id="username" placeholder="Username (min 3 chars, letters/numbers)" required>
+    <div id="usernameError" class="error-message"></div>
+    <input type="email" id="email" placeholder="Email" required>
+    <div id="emailError" class="error-message"></div>
+    <input type="password" id="password" placeholder="Password (min 8 chars, 1 uppercase, 1 number)" required>
+    <div id="passwordError" class="error-message"></div>
+    <input type="text" id="fullName" placeholder="Full Name" required>
+    <div id="fullNameError" class="error-message"></div>
+    <input type="tel" id="phoneNumber" placeholder="Phone Number" required>
+    <div id="phoneNumberError" class="error-message"></div>
+    <button id="registerButton">Register</button>
+    <button class="toggle-button" id="showLoginForm">Login</button>
+    <a href="privacy.html" class="toggle-button" style="text-decoration: none;">Privacy Policy</a>
+  </div>
+
+  <script>
+    // ... (Your existing JavaScript) ...
+    // Login Form
+    const loginUsernameInput = document.getElementById("loginUsername");
+    const loginPasswordInput = document.getElementById("loginPassword");
+    const loginButton = document.getElementById("loginButton");
+    const loginUsernameError = document.getElementById("loginUsernameError");
+    const loginPasswordError = document.getElementById("loginPasswordError");
+
+    loginButton.addEventListener("click", function() {
+      const loginUsername = loginUsernameInput.value;
+      const loginPassword = loginPasswordInput.value;
+      let validLogin = true;
+
+      // Basic Login validation
+      if (!loginUsername) {
+        loginUsernameError.textContent = "Please enter username or email.";
+        validLogin = false;
+      } else {
+        loginUsernameError.textContent = "";
+      }
+
+      if (!loginPassword) {
+        loginPasswordError.textContent = "Please enter password.";
+        validLogin = false;
+      } else {
+        loginPasswordError.textContent = "";
+      }
+
+      if (validLogin) {
+        alert("Login Successful!");
+        // Add actual login logic here
+      }
+    });
+
+    // Register Form
+    const usernameInput = document.getElementById("username");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const fullNameInput = document.getElementById("fullName");
+    const phoneNumberInput = document.getElementById("phoneNumber");
+    const registerButton = document.getElementById("registerButton");
+
+    const usernameError = document.getElementById("usernameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const fullNameError = document.getElementById("fullNameError");
+    const phoneNumberError = document.getElementById("phoneNumberError");
+
+    registerButton.addEventListener("click", function() {
+      // Redirect to privacy policy page
+      window.location.href = "privacy.html";
+    });
+
+    // Toggle Forms
+    document.getElementById("showRegisterForm").addEventListener("click", function() {
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("registerForm").style.display = "block";
+    });
+
+    document.getElementById("showLoginForm").addEventListener("click", function() {
+      document.getElementById("registerForm").style.display = "none";
+      document.getElementById("loginForm").style.display = "block";
+    });
+  </script>
+</body>
+</html>
